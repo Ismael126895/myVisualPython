@@ -9,7 +9,24 @@ Zarrow= arrow(axis=vector(0,0,1),color=color.blue,length=arrowL,shaftwidth=arrow
 pntArrow = arrow(axis=vector(arrowL*np.cos(theta),arrowL*np.sin(theta),0),color=color.orange,length=arrowL,shaftwidth=arrowT)
 while True:
     for myAngle in np.linspace(0,2*np.pi,1000):
-        rate(50)
+        rate(150)
         pntArrow.axis=vector(arrowL*np.cos(myAngle),arrowL*np.sin(myAngle),0)
         pntArrow.length=arrowL
+        if myAngle == 2*np.pi:
+            for myAngle in np.linspace(np.pi/2,2*np.pi,1000):
+                rate(150)
+                pntArrow.axis=vector(arrowL*np.sin(myAngle),0,arrowL*np.cos(myAngle))
+                pntArrow.length=arrowL
+                if myAngle == 2*np.pi:     
+                    for myAngle in np.linspace(0,2*np.pi,1000):
+                        rate(150)
+                        pntArrow.axis=vector(0,arrowL*np.sin(myAngle),arrowL*np.cos(myAngle))
+                        pntArrow.length=arrowL
+                        if myAngle == 2*np.pi:
+                            for myAngle in np.linspace(0,2.5*np.pi,1000):
+                                rate(150)
+                                pntArrow.axis=vector(arrowL*np.sin(myAngle),0,arrowL*np.cos(myAngle))
+                                pntArrow.length=arrowL
+                            
+
 
