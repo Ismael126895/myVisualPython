@@ -1,6 +1,6 @@
 from vpython import *
 import numpy as np
-clockR=2
+clockR=1
 clockT=clockR/10
 
 majorTickL=clockR/7
@@ -8,12 +8,35 @@ majorTickT=2*np.pi*clockR/400
 majorTickW=clockT*1.2
 
 minorTickL=clockR/12
-minorTickT=2*np.pi*clockR/400
+minorTickT=2*np.pi*clockR/600
 minorTickW=clockT*1.2
+
+minuteHandL=clockR-majorTickL
+minuteHandT=minuteHandL/25
+minuteHandOffset=clockT/2+minuteHandT
+
+hourHandL=.75*minuteHandL
+hourHandT=minuteHandT*1.25
+hourHandOffset=clockT+hourHandT
+
 for theta in np.linspace(0,2*np.pi,13):
     majorTik=box(axis=vector(clockR*np.cos(theta),clockR*np.sin(theta),0), color=color.black, length=majorTickL, width=majorTickW, height=majorTickT,pos=vector((clockR-majorTickL/2)*np.cos(theta),(clockR-majorTickL/2)*np.sin(theta),0))
 for theta in np.linspace(0,2*np.pi,61):
     minorTik=box(axis=vector(clockR*np.cos(theta),clockR*np.sin(theta),0), color=color.black, length=minorTickL, width=minorTickW, height=minorTickT,pos=vector((clockR-minorTickL/2)*np.cos(theta),(clockR-minorTickL/2)*np.sin(theta),0))
 clockFace=cylinder(axis=vector(0,0,1),color=vector(0,1,.8),length=clockT,radius=clockR, pos=vector(0,0,-clockT/2))
+hubRadius=clockT/2
+
+hourAngle=0
+minuteAngle=0
+minInc=.1
+hourInc=minInc/60
+
+minuteHand=arrow(axis=vector(1,0,0),color=color.red,shaftwidth=minuteHandT,length=minuteHandL,pos=vector(0,0,minuteHandOffset))
+hourHand=arrow(axis=vector(0,1,0),color=color.red,shaftwidth=hourHandT,length=hourHandL,pos=vector(0,0,hourHandOffset))
+hub=cylinder(axis=vector(0,0,1),color=color.red,radius=hubRadius,length=2*clockT)
 while True:
-    pass
+    rate(50)
+    hourAngle=hourAngle+hourInc
+    minuteAngle=minuteAngle+minInc
+    hourHand.axis=vector(hourHandL*np.cos(hourAngle),hourHandL*np.sin(hourAngle),0)
+    
