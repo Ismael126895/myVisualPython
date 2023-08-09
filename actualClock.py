@@ -49,8 +49,8 @@ while True:
         hour=hour-12
     minute = time.localtime(time.time())[4]
     second = time.localtime(time.time())[5]
-    hourAngle=-(hour/12)*2*np.pi+np.pi/2
-    minuteAngle=-(minute/60)*2*np.pi+np.pi/2
+    hourAngle=-((hour+minute/60)/12)*2*np.pi+np.pi/2
+    minuteAngle=-((minute+second/60)/60)*2*np.pi+np.pi/2
     secondAngle=-(second/60)*2*np.pi+np.pi/2
     
     
