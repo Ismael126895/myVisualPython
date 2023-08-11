@@ -19,7 +19,8 @@ xPos=0
 yPos=0
 zPos=0
 
-def runRadio()
+def runRadio(x):
+    print(x.checked)
 
 radio(bind=runRadio,text='Run')
 
